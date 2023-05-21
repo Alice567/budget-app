@@ -50,7 +50,9 @@ openDialog(budget: BudgetModel):void{
       data: budget
     })
     dialogRef.afterClosed().subscribe(result=>{
-      console.log("close");
+if (result.event === 'submit'){
+  console.log(result.data)
+}
     })
   }
 }

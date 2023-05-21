@@ -1,5 +1,5 @@
 <div>
-    <form [formGroup]= "budgetForm">
+    <form [formGroup]= "budgetForm" (ngSubmit)="onSubmit()">
 
       <mat-form-field appearance= "fill" style="margin: 10px 20px 10px 20px">
         <mat-label>Type</mat-label>
@@ -33,7 +33,7 @@
               </mat-form-field>
 
               <div>
-        <button mat- raised-button color = "primary" style="margin: 10px 10px 10px 10px;" > Save </button>
+        <button mat- raised-button color = "primary" style="margin: 10px 10px 10px 10px;" type="submit" [disabled]="!budgetForm.valid"> Save </button>
         <button mat- raised-button color = "warn" (click) ="cancel()"> Cancel </button>
         </div>
     </form>

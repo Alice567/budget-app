@@ -1,8 +1,8 @@
 export interface BudgetModel{
     id: number,
-    type: String,
-    account: String,
+    type: string,
+    account: string,
     value : number,
-    product: String,
-    description: String,
+    product: string,
+    description: string
 }

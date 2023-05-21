@@ -1,8 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { BudgetsApiService } from '../services/budgets-api.service';
 import { BudgetModel } from '../models/budget.model';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator} from '@angular/material/paginator';
+import { MatTableDataSource} from '@angular/material/table';
+import { MatDialog} from '@angular/material/dialog';
+import { BudgetFormComponent } from '../budget-form/budget-form.component';
 
 @Component({
   selector: 'app-budgets',
@@ -14,7 +16,7 @@ export class BudgetsComponent implements OnInit{
   displayedColumns: string[] = ['id' , 'type', 'value', 'account', 'product' , 'description' , 'actions'];
   dataSource: any;
   
-  constructor(private budgetsApi:BudgetsApiService){
+  constructor(private budgetsApi:BudgetsApiService, private dialogRef: MatDialog){
 
   }
  
@@ -37,7 +39,18 @@ ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
   });
 }
-  update(): void{
-    console.log("Updated !")
+
+
+
+openDialog(budget: BudgetModel):void{
+    const dialogRef = this.dialogRef.open(BudgetFormComponent,{
+      width: '250px',
+      backdropClass: 'custom-dialog-backdrop-class',
+      panelClass: 'custom-dialog-panel-class',
+      data: budget
+    })
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log("close");
+    })
   }
 }

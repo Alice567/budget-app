@@ -51,8 +51,9 @@ openDialog(budget: BudgetModel):void{
     })
     dialogRef.afterClosed().subscribe(result=>{
 if (result.event === 'submit'){
-  console.log(result.data)
+  this.budgetsApi.updateBudget(budget.id,result.data)
+  /*Veridica daca functioneaza fara*/console.log(result.data)
+    }
+  })
 }
-    })
-  }
 }

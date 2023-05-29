@@ -22,7 +22,7 @@ export class BudgetsApiService {
   //     return this.httpClient.post(this.url , request);
   //   }
   
-  //   deleteBudget(id:string): Observable<any> {
-  //     return this.httpClient.delete(this.url + "/" + id);
-  //   }
+    deleteBudget(id:string): Observable<any> {
+      return this.httpClient.delete(this.url + "/" + id);
+    }
  }

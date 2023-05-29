@@ -1,12 +1,13 @@
 <div>
     <form [formGroup]= "budgetForm" (ngSubmit)="onSubmit()">
 
+
       <mat-form-field appearance= "fill" style="margin: 10px 20px 10px 20px">
         <mat-label>Type</mat-label>
-        <mat-select>
-          <mat-option value="type" type= "text" formControlName="type">EXPENSE</mat-option>
-          <mat-option value="type " type="text" formControlName="type">INCOME</mat-option>
-        </mat-select>
+        <select matNativeControl required>
+          <option value="INCOME">INCOME</option>
+          <option value="EXPENSE">EXPENSE</option>
+        </select>
       </mat-form-field>
 
         <mat-form-field appearance ='fill' style="margin:10px 10px 10px 10px ;">
@@ -14,12 +15,13 @@
             <input matInput id="value" type="text" formControlName="value">
           </mat-form-field>
 
+
           <mat-form-field appearance= "fill" style="margin: 10px 20px 10px 20px">
             <mat-label>Account</mat-label>
-            <mat-select>
-              <mat-option value="account" type= "text" formControlName="account">CASH</mat-option>
-              <mat-option value="account" type= "text" formControlName="account">CARD</mat-option>
-            </mat-select>
+            <select matNativeControl required>
+              <option value="CASH">CASH</option>
+              <option value="CARD">CARD</option>
+            </select>
           </mat-form-field>
 
           <mat-form-field appearance ='fill' style="margin:10px 10px 10px 10px ;">

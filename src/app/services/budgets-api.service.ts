@@ -24,7 +24,6 @@ export class BudgetsApiService {
   
     deleteBudget(id:string): Observable<any> {
       return this.httpClient.delete(this.url + "/" + id, {
-       // responseType: 'text',
       }
       );
     }

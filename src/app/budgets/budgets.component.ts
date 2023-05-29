@@ -20,7 +20,7 @@ export class BudgetsComponent implements OnInit{
   constructor(private budgetsApi:BudgetsApiService, private dialogRef: MatDialog){
 
   }
- 
+
 
 ngOnInit(): void {
   this.budgetsApi.getAll().subscribe(res =>{
@@ -50,31 +50,26 @@ openDialog(budget: BudgetModel):void{
       backdropClass: 'custom-dialog-backdrop-class',
       panelClass: 'custom-dialog-panel-class',
       data: budget,
-    })   
-     //TODO: Cod inainte de modificare (R)
+    }) 
+
+     // Update button
 
     dialogRef.afterClosed().subscribe(result=>{
       if (result.event === 'submit'){
         this.budgetsApi.updateBudget(budget.id,result.data)
-  /*Veridica daca functioneaza fara*/console.log(result.data)
- // location.reload();
+  console.log(result.data)
     }
-  }
+    }
  )
-}
+  }
 
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-// dialogRef.afterClosed().subscribe((result) => {
-//   if (result.event === 'submit' && budget) {
-//     this.budgetsApi.updateBudget(budget.id, result.data).subscribe();
+///TODO: Functionalitate buton add si update
+// dialogRef.afterClosed().subscribe(result =>{
+//   if(result.event === 'submit' && budget){
+//     this.budgetsApi.updateBudget(budget.id, result.data);
 //     location.reload();
-    
-//   } else if (result.event === 'add') {
-//      this.budgetsApi.addBudget(result.data).subscribe();
-//     location.reload();
+//   } else if(result.event === 'add'){
+//     this.budgetsApi.addBudget(result.data).subscribe();
 //   }
 // });
 // }
@@ -85,6 +80,7 @@ this.budgetsApi.deleteBudget(id).subscribe()
   location.reload();
 }
 }
+
 
 
 

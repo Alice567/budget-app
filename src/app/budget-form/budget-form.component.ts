@@ -30,7 +30,6 @@ this.currentBudget = data;
   ngOnInit(): void {
   this.budgetForm.controls.type.setValue(this.currentBudget.type);
   this.budgetForm.controls.value.setValue(this.currentBudget.value.toString());
-  //TODO:  functie asemanatoare toString la type si account
   this.budgetForm.controls.account.setValue(this.currentBudget.account);
   this.budgetForm.controls.product.setValue(this.currentBudget.product);
   this.budgetForm.controls.description.setValue(this.currentBudget.description);

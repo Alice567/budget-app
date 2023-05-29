@@ -17,12 +17,15 @@ export class BudgetsApiService {
     updateBudget(id:number, request:BudgetModel): Observable<any> {
       return this.httpClient.put(this.url + "/" + id, request);
     }
-//TODO: Add this on your app:
-  //   addBudget(request: BudgetModel): Observable<any> {
-  //     return this.httpClient.post(this.url , request);
-  //   }
+
+    addBudget(request: BudgetModel): Observable<any> {
+      return this.httpClient.post(this.url , request);
+    }
   
     deleteBudget(id:string): Observable<any> {
-      return this.httpClient.delete(this.url + "/" + id);
+      return this.httpClient.delete(this.url + "/" + id, {
+       // responseType: 'text',
+      }
+      );
     }
  }

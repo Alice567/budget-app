@@ -5,6 +5,7 @@ import { MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource} from '@angular/material/table';
 import { MatDialog} from '@angular/material/dialog';
 import { BudgetFormComponent } from '../budget-form/budget-form.component';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-budgets',
@@ -24,7 +25,8 @@ export class BudgetsComponent implements OnInit{
 ngOnInit(): void {
   this.budgetsApi.getAll().subscribe(res =>{
     console.log(res);
-    this.dataSource=new MatTableDataSource<BudgetModel>(res.map((budget:any)=>{
+    this.dataSource=new MatTableDataSource<BudgetModel>(
+      res.map((budget:any)=>{
       return {
         id: budget.id,
         type: budget.type,
@@ -35,7 +37,7 @@ ngOnInit(): void {
   
 
       }
-    }))
+    }));
     this.dataSource.paginator = this.paginator;
   });
 }
@@ -47,13 +49,43 @@ openDialog(budget: BudgetModel):void{
       width: '250px',
       backdropClass: 'custom-dialog-backdrop-class',
       panelClass: 'custom-dialog-panel-class',
-      data: budget
-    })
+      data: budget,
+    })   
+     //TODO: Cod inainte de modificare (R)
+
     dialogRef.afterClosed().subscribe(result=>{
-if (result.event === 'submit'){
-  this.budgetsApi.updateBudget(budget.id,result.data)
+      if (result.event === 'submit'){
+        this.budgetsApi.updateBudget(budget.id,result.data)
   /*Veridica daca functioneaza fara*/console.log(result.data)
+ // location.reload();
     }
-  })
+  }
+ )
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+// dialogRef.afterClosed().subscribe((result) => {
+//   if (result.event === 'submit' && budget) {
+//     this.budgetsApi.updateBudget(budget.id, result.data).subscribe();
+//     location.reload();
+    
+//   } else if (result.event === 'add') {
+//      this.budgetsApi.addBudget(result.data).subscribe();
+//     location.reload();
+//   }
+// });
+// }
+
+
+deleteBudget(id: string): void {
+this.budgetsApi.deleteBudget(id).subscribe() 
+  location.reload();
 }
 }
+
+
+
+
